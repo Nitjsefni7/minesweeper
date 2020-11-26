@@ -23,6 +23,7 @@ function createBoard(row_count, col_count, mine_count) {
 	}
 	let minePositions = [];
 	minePositions = createMinePositions(mine_count, row_count, col_count);
+	console.log(minePositions.length)
 	placeTheMines(minePositions);
 }
 
@@ -33,7 +34,17 @@ function createMinePositions(mine_count, row_count, col_count) {
 		let x = randomNumber(0, row_count - 1);
 		let y = randomNumber(0, col_count - 1);
 		let position = [x,y];
-		minePositions.push(position);
+
+		let isUnique = true;
+		minePositions.forEach(function(element, index){
+			if (element[0]==x && element[1]==y){
+				i--;
+				isUnique = false;
+			}
+		});
+		if (isUnique) {
+			minePositions.push(position);
+		}
 	}
 	return minePositions;
 }
@@ -103,6 +114,7 @@ function handleRightClick(x,y){
 function randomNumber(min, max){
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
 
 const row_count = 10;
 const col_count = 10;
