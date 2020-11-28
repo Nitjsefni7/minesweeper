@@ -68,6 +68,8 @@ function handleClick(x, y) {
 	} else {
 		reveal(x,y)
 	}
+
+	checkIfWon()
 }
 
 function reveal(x,y){
@@ -90,6 +92,7 @@ function reveal(x,y){
 		if (mine_count_adjecent > 0) {
 			cell.innerHTML = mine_count_adjecent;
 		} else {
+			cell.classList.add("noNumber");
 			for (let m=Math.max(x-1, 0); m<=Math.min(x+1, row_count-1); m++){
 				for (let n=Math.max(y-1, 0); n<=Math.min(y+1, col_count-1); n++){
 					reveal(m,n)
@@ -109,13 +112,24 @@ function handleRightClick(x,y){
 			cell.classList.add("flagged")
 		}
 	}
+}
+
+function checkIfWon() {
+	let minesRevealed = document.querySelectorAll(".mine.revealed").length;
+	let cellsStillHidden = row_count*col_count - document.querySelectorAll(".cell.revealed").length
+
+	if (minesRevealed > 0) {
+		alert("Przegrales")
+	} else if (cellsStillHidden == mine_count){
+		alert("gratulacje");
+	}
 }	
 
 function randomNumber(min, max){
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-
+const mine_count = 15;
 const row_count = 10;
 const col_count = 10;
 createBoard(10,10,15);

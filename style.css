@@ -39,3 +39,7 @@ body {
 	background-size: 50px 50px;
 	background-image: url("flag.png");
 }
+.noNumber {
+	margin: 0;
+	padding: 1px;
+}
