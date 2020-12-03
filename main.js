@@ -2,6 +2,9 @@ const closeGameOver = document.querySelector(".btn-closeGameOver");
 const reset = document.querySelector(".btn-reset");
 const boardNode = document.querySelector("#board");
 const flagCounter = document.querySelector(".counter").querySelector("span");
+const mineCounter = document.querySelector(".mine-counter").querySelector("span");
+const timer = document.querySelector(".timer").querySelector("span");
+let gameStarted = false;
 
 function createBoard(row_count, col_count, mine_count) {
 	const board = {
@@ -10,6 +13,7 @@ function createBoard(row_count, col_count, mine_count) {
 		mine_count
 	}
 
+	mineCounter.innerText = mine_count;
 	for (let i=0; i<row_count; i++) {
 		const row = document.createElement('div');
 		row.className = "row";
@@ -72,6 +76,9 @@ function placeTheMines(minePositions) {
 }
 
 function handleClick(x, y, board) {
+	if (!gameStarted) {
+		setTimer();
+	}
 	let cell = document.getElementById(`${x}_${y}`);
 
 	if (cell.classList.contains("mine")) {
@@ -146,9 +153,9 @@ function checkIfWon(board) {
 function showGameOver(result) {
 	const gameOver = new Modal();
 	if (result){
-		gameOver.open().setColor("lime").setText("WYGRALES");
+		gameOver.open().setColor("lime").setTime(result).setText("WYGRALES");
 	} else {
-		gameOver.open().setColor("red").setText("PRZEGRALES");
+		gameOver.open().setColor("red").setTime(result).setText("PRZEGRALES");
 	}
 
 	closeGameOver.addEventListener("click", function(){
@@ -156,14 +163,24 @@ function showGameOver(result) {
 		reset.style.display = "block";
 	});
 	boardNode.classList.add("disable");
+	clearInterval(interval);
 }
 
 function resetGame(board){
+	gameStarted = false;
 	boardNode.innerHTML = '';
 	boardNode.classList.remove("disable");
 	createBoard(board.row_count, board.col_count, board.mine_count);
 	reset.style.display = "none";
 	flagCounter.innerText = "0";
+	timer.innerText = "0";
+}
+
+function setTimer(){
+	gameStarted = true;
+	interval = setInterval(function(){
+		timer.innerText++
+	},1000)
 }
 
 function randomNumber(min, max){
@@ -188,6 +205,14 @@ class Modal {
 		this.modal.querySelector("#modal-content").style.backgroundColor = color;
 		return this;
 		}
+	setTime(result){
+		if(result) {
+			this.modal.querySelector("#modal-time").innerText = "Twój czas to: " + timer.innerText;
+		} else {
+			this.modal.querySelector("#modal-time").innerText = "";
+		}
+		return this;
+	}
 }
 
 createBoard(10,10,15);

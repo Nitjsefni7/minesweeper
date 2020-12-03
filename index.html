@@ -9,15 +9,21 @@
 <body>
 
 	<h1>Minesweeper</h1>
+	<div class="ctrl">
+		<div class="counter">Oflagowane pola: <span>0</span></div>
+		<div class="mine-counter">Ilość min: <span></span></div>
+	</div>
+	<div class="timer">Czas: <span>0</span></div>
 	<div id="board"></div>
-	<div class="counter">Oflagowane pola: <span>0</span></div>
 	<div id="modal">
 		<div id="modal-content">
 			<div id="modal-text"></div>
+			<div id="modal-time"></div>
 			<button class="btn-closeGameOver">ZAMKNIJ</button>
 		</div>
 	</div>
 	<button class="btn-reset">RESET</button>
+	
 	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
