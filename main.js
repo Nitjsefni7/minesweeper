@@ -1,9 +1,10 @@
 //Saper by Grz
-//definujemyn dostęp do elementów interfejsu 
+ 
 var MYAPP = MYAPP || {};
 
-//główna funkcja tworząca pole do gry
+//główna funkcja w postaci IIFE
 (function(nms) {
+	//definujemyn dostęp do elementów interfejsu
 	const closeGameOver = document.querySelector(".btn-closeGameOver");
 	const reset = document.querySelector(".btn-reset");
 	const boardNode = document.querySelector("#board");
@@ -13,7 +14,7 @@ var MYAPP = MYAPP || {};
 	let gameStarted = false; //zmienna używana do odpalenia zegara po pierwszym kliknięciu
 	let interval;
 
-	const board = { //obiekt z własicwościami boardu, aby móc zmienne przekazać do odpowiednich funckji bez używania zmiennych globalnych
+	const board = { //obiekt z własicwościami boardu
 		row_count : 10,
 		col_count : 10,
 		mine_count : 15
@@ -44,17 +45,15 @@ var MYAPP = MYAPP || {};
 			}
 		}
 		//tworzenie i umiejscowienie min
-		let minePositions = [];
-		//minePositions = createMinePositions().;
-		//placeTheMines(minePositions);
 		placeTheMines(createMinePositions());
+
 		//zaprogramowanie przycisku resetującego grę
 		reset.addEventListener("click", function(){
 			resetGame();
 		});
 	}
 
-	//funkcja losująca położenie min (otrzymuje parametry boarda w obiekcie board) i zwracająca tablice z koordynatami
+	//funkcja losująca położenie min i zwracająca tablice z koordynatami
 	const createMinePositions = function() {	
 		let minePositions = [];
 		//uzywamy zdefiniwanej nizej fukncji randomNumber, ktora losuje liczbe w podanym zakresie
@@ -90,7 +89,6 @@ var MYAPP = MYAPP || {};
 	}
 
 	//funkcja okreslajaca co sie dzieje po kliknięciu lewym przyciskiem myszy na którąś z komórek
-	//w tej funkcji nie korzystamy z parametrów board, ale potrzebujemy je przekazać do dalszych funkcji tu wywołanych
 	const handleClick = function(x, y) {
 		if (!gameStarted) { //warunek, który odpala zegar o ile jest to pierwsze kliknięcie w danej grze
 			setTimer(); //zmienna gameStarted jest nastepnie zmieniona na true (dopiero reset gry zmienia ją z powrotem na false)
