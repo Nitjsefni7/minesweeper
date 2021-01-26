@@ -3,6 +3,7 @@
 var MYAPP = MYAPP || {};
 //sprawdzam przelaczenie sie miedzy galeziami
 //główna funkcja w postaci IIFE
+//OSTATANIA ZMIANA
 (function(nms) {
 	//definujemyn dostęp do elementów interfejsu
 	const closeGameOver = document.querySelector(".btn-closeGameOver");
