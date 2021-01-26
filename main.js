@@ -1,7 +1,7 @@
 //Saper by Grz
  
 var MYAPP = MYAPP || {};
-
+//a teraz chce zobaczyc jak wyglada drzewko
 //główna funkcja w postaci IIFE
 (function(nms) {
 	//definujemyn dostęp do elementów interfejsu
