@@ -19,7 +19,7 @@ var MYAPP = MYAPP || {};
 		col_count : 10,
 		mine_count : 15
 	}
-
+//HOTFIX W CELU SPRAWDZENIA MERGE
 	const init = function(){
 		mineCounter.innerText = board.mine_count; //wyświetla liczbę min na interfejsie
 		//dwie pętle for do tworzenia każdej komórki boardu
