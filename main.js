@@ -1,8 +1,9 @@
 //Saper by Grz
  
 var MYAPP = MYAPP || {};
-//a teraz chce zobaczyc jak wyglada drzewko, drzewko
+//bedzie tak
 //główna funkcja w postaci IIFE
+//OSTATANIA ZMIANA
 (function(nms) {
 	//definujemyn dostęp do elementów interfejsu
 	const closeGameOver = document.querySelector(".btn-closeGameOver");
