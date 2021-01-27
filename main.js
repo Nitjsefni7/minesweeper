@@ -1,7 +1,7 @@
 //Saper by Grz
  
 var MYAPP = MYAPP || {};
-
+//czy musze podać hasło
 //główna funkcja w postaci IIFE
 (function(nms) {
 	//definujemyn dostęp do elementów interfejsu
